@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<!-- First page (practicing template inheritance) -->
+{% endblock %}
+
+{% block body %}
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <!-- <h2 class="text-center">Guest book</h2> -->
+        <h2 class="text-center">Book details</h2>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table table-responsive table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year of publication</th>
+                    <th>User Reviews</th>
+                    <th>Reviews From Goodreads</th>
+                    <th>Ratings From Goodreads</th>
+                    <th>Your review</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{book.isbn}}</td>
+                    <td class="btn btn-xs btn-success">{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.year.strftime("%Y")}}</td>
+                    <td><a class="btn btn-xs btn-dark" href="/book/reviews/{{book.id}}">{{review_count}}</a></td>
+                    <td>{{goodreads_reviews}}</td>
+                    <td>{{goodreads_rating}}</td>
+                    <td><a class="btn btn-xs btn-success" href="/book/write_review/{{book.id}}">Write review</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <a href="/logout">Logout</a> -->
+</div>
+
+{% endblock %}

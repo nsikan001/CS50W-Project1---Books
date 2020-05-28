@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<!-- First page (practicing template inheritance) -->
+{% endblock %}
+
+{% block body %}
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <h2 class="text-center">Submit Your Review</h2>
+        <!-- <h4 class="text-center">Submit your review</h4> -->
+        
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <h1 class="text-center">Error</h1>
+            <div class="notification is-danger text-center alert alert-danger">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+    </div>
+
+    <div class="col-md-12">
+        <form class="form" action="submit_review" method="POST">
+            <div class="form-group" >
+                <label class="control-label">Rating</label>
+                <select class="form-control" name="rating">
+                    <option>Select rating</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group" >
+                <label class="control-label">Comment</label>
+                <textarea class="form-control" name="comment"></textarea>   
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-dark btn-xs" href="/book/write_review/submit_review/{{rev_id}}">Submit</button>
+            </div>
+        </form>
+    </div>
+    <!-- <a href="/logout">Logout</a> -->
+</div>
+
+{% endblock %}

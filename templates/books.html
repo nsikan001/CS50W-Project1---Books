@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<!-- First page (practicing template inheritance) -->
+{% endblock %}
+
+{% block body %}
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <h1 class="text-center">All Books</h1>
+        <form class="form" action="book_search" method="POST">
+            <div class="form-group" >
+                <input type="search" class="form-control" placeholder="Search for a book" name="book_srch" required>
+                    
+            </div>
+            <div class="form-group"><button type="submit" class="btn btn-dark btn-xs">search</button></div>
+        </form>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table table-responsive table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year of publication</th>
+                    <th>Your Review</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td><a class="btn btn-xs btn-info" href="/book/details/{{book.id}}">{{book.isbn}}</a></td>
+                    <td><a class="btn btn-xs btn-success" href="/book/details/{{book.id}}">{{book.title}}</a></td>
+                    <td><a class="btn btn-xs btn-success" href="#">{{book.author}}</a></td>
+                    <td><a class="btn btn-xs btn-success" href="/book/details/{{book.id}}">{{book.year.strftime("%Y")}}</a></td>
+
+                    <td><a class="btn btn-xs btn-success" href="/book/write_review/{{book.id}}">Write review</a></td>
+                </tr>
+
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- <a href="/logout">Logout</a> -->
+</div>
+
+{% endblock %}
